@@ -9,13 +9,6 @@ abstract class AuthDTO
 {
     /**
      * @JMS\Type("string")
-     * @Assert\Email()
-     * @Assert\NotBlank()
-     */
-    public string $email;
-
-    /**
-     * @JMS\Type("string")
      * @Assert\NotBlank()
      */
     public string $username;

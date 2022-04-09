@@ -6,6 +6,7 @@ use App\Entity\Task;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,10 +25,7 @@ class TaskController extends AbstractController
      */
     public function index(Request $request)
     {
-        $task = new Task('lol', 'lol2');
-        $this->em->persist($task);
-        $this->em->flush();
-        dd($task);
+        dd($this->getUser());
     }
 
     /**
@@ -40,6 +38,6 @@ class TaskController extends AbstractController
         $task->setTitle('lollll');
         $this->em->persist($task);
         $this->em->flush();
-        dd($task);
+        return new JsonResponse([], 200);
     }
 }
