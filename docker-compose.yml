@@ -6,14 +6,16 @@ services:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: s3cr3t
-      MYSQL_DATABASE: testapp
-      MYSQL_USER: symfony
-      MYSQL_PASSWORD: symfony
+      - MYSQL_ROOT_PASSWORD=s3cr3t
+      - MYSQL_DATABASE=testapp
+      - MYSQL_USER=symfony
+      - MYSQL_PASSWORD=symfony
+      - TZ=Europe/Kiev
     ports:
       - '3306:3306'
     volumes:
       - db:/var/lib/mysql
+      - ./docker/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
     networks:
       - testapp
   php_fpm:
@@ -25,6 +27,7 @@ services:
       - '9000:9000'
     volumes:
       - ./app:/var/www/html
+      - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
     depends_on:
       - mysql
     networks:
