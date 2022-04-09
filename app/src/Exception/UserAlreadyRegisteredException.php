@@ -10,7 +10,7 @@ class UserAlreadyRegisteredException extends Exception
     /**
      * @var string
      */
-    protected $message = "User already register";
+    protected $message = "User already registered.";
 
     /**
      * @var int

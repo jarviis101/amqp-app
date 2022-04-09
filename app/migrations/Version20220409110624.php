@@ -9,14 +9,8 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20220409110624 extends AbstractMigration
 {
-    public function getDescription(): string
-    {
-        return '';
-    }
-
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('
             CREATE TABLE tasks (
                 id INT AUTO_INCREMENT NOT NULL,
@@ -32,7 +26,6 @@ final class Version20220409110624 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('DROP TABLE tasks');
     }
 }
