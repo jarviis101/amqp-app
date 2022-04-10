@@ -15,15 +15,17 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
 
 class TokenAuthenticator extends AbstractAuthenticator
 {
-    public function supports(Request $request): ?bool
+    public function supports(Request $request): bool
     {
-        return $request->headers->has('X-AUTH-TOKEN');
+        return str_starts_with($request->getPathInfo(), '/api/');
     }
 
     public function authenticate(Request $request): Passport
     {
         $apiToken = $request->headers->get('X-AUTH-TOKEN');
-        if (!$apiToken) throw new CustomUserMessageAuthenticationException('No API token provided');
+        if (!$apiToken) {
+            throw new CustomUserMessageAuthenticationException('No API token provided');
+        }
 
         return new SelfValidatingPassport(new UserBadge($apiToken));
     }

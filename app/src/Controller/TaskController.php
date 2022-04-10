@@ -25,7 +25,10 @@ class TaskController extends AbstractController
      */
     public function index(Request $request)
     {
-        dd($this->getUser());
+        $task = new Task('lol', 'lol2');
+        $this->em->persist($task);
+        $this->em->flush();
+        return new JsonResponse([], 200);
     }
 
     /**

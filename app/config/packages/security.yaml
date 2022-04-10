@@ -21,8 +21,12 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        api_auth:
-            pattern: ^/api/auth/(register|login)
+        api_register:
+            pattern: ^/api/auth/register
+            security: false
+
+        api_login:
+            pattern: ^/api/auth/login
             provider: app_user_provider
             json_login:
                 check_path: api_login
@@ -30,13 +34,9 @@ security:
         api:
             pattern: ^/api
             provider: apikey_provider
-            stateless: true
-            custom_authenticators:
-                - App\Security\TokenAuthenticator
+            custom_authenticator: App\Security\TokenAuthenticator
 
     access_control:
-        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/api/auth/(register|login), roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
 when@test:
     security:
