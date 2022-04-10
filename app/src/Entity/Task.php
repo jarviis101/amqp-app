@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Entity\Traits\ModifyEntityTrait;
+use App\Exception\PriorityAlreadyExist;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,18 +40,77 @@ class Task
      */
     private bool $status;
 
-//    private User $user;
-//    private $priority;
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Task")
+     * @ORM\JoinTable(
+     *     name="subtasks",
+     *     joinColumns={@ORM\JoinColumn(name="task_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="sub_task_id", referencedColumnName="id")}
+     * )
+     */
+    private Collection $tasks;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private User $user;
+
+    /**
+     * @ORM\Column(type="task_priority", nullable=false, options={"default": 0})
+     */
+    private Priority $priority;
+
     public function __construct(string $title, string $description, bool $status = false)
     {
         $this->title = $title;
         $this->description = $description;
         $this->status = $status;
         $this->createdAt = new DateTimeImmutable();
+        $this->tasks = new ArrayCollection();
+        $this->priority = new Priority();
     }
 
     public function setTitle(string $title): void
     {
         $this->title = $title;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function addTask(Task $task) {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks->add($task);
+        }
+    }
+
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * @param Priority $priority
+     * @throws PriorityAlreadyExist
+     */
+    public function setPriority(Priority $priority): void
+    {
+        if ($this->priority->equals($priority)) {
+            throw new PriorityAlreadyExist('Role is already same.');
+        }
+        $this->priority = $priority;
     }
 }

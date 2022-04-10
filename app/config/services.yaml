@@ -23,10 +23,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 
-    App\ArgumentValueResolver\UserRegisterResolver:
+    App\ArgumentValueResolver\Auth\UserRegisterResolver:
         tags:
             - { name: controller.argument_value_resolver, priority: 50 }
 
-    App\ArgumentValueResolver\UserLoginResolver:
+    App\ArgumentValueResolver\Task\CreateTaskResolver:
         tags:
             - { name: controller.argument_value_resolver, priority: 50 }

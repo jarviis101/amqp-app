@@ -17,6 +17,7 @@ final class Version20220409110624 extends AbstractMigration
                 title VARCHAR(255) NOT NULL,
                 description LONGTEXT NOT NULL,
                 status TINYINT(1) DEFAULT 0 NOT NULL COMMENT \'0 - todo, 1 - done\',
+                priority INT DEFAULT 0 NOT NULL COMMENT \'(DC2Type:task_priority)\',
                 created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\',
                 updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', 
                 PRIMARY KEY(id)

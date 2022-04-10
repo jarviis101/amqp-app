@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ArgumentValueResolver;
+namespace App\ArgumentValueResolver\Auth;
 
 use App\Exception\UserAlreadyRegisteredException;
 use App\Exception\ValidationException;
