@@ -4,6 +4,7 @@ namespace App\DTO\Task;
 
 use App\Entity\Priority;
 use App\Entity\Task;
+use App\Entity\User;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,6 +24,7 @@ final class CreateTaskDTO
 
     /**
      * @JMS\Type("int")
+     * @Assert\NotBlank()
      */
     public Priority $priority;
 
@@ -31,5 +33,7 @@ final class CreateTaskDTO
      * @JMS\SerializedName("parent_id")
      */
     public ?Task $parentTask = null;
+
+    public User $user;
 
 }

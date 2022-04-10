@@ -51,7 +51,7 @@ class Task
     private Collection $tasks;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private User $user;
@@ -61,8 +61,9 @@ class Task
      */
     private Priority $priority;
 
-    public function __construct(string $title, string $description, bool $status = false)
+    public function __construct(User $user, string $title, string $description, bool $status = false)
     {
+        $this->user = $user;
         $this->title = $title;
         $this->description = $description;
         $this->status = $status;
@@ -112,5 +113,13 @@ class Task
             throw new PriorityAlreadyExist('Role is already same.');
         }
         $this->priority = $priority;
+    }
+
+    public function toArray(): array {
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'description' => $this->getDescription(),
+        ];
     }
 }
