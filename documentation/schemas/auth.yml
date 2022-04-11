@@ -1,0 +1,34 @@
+RegisterDTO:
+  required:
+    - email
+    - username
+    - password
+  type: object
+  properties:
+    email:
+      type: string
+      description: Email(must be unique)
+      example: 'jarviis101@gmail.com'
+    username:
+      type: string
+      description: Username(must be unique)
+      example: 'jarviis101'
+    password:
+      type: string
+      description: Password
+      example: 'example'
+
+LoginDTO:
+  required:
+    - username
+    - password
+  type: object
+  properties:
+    username:
+      type: string
+      description: Username(must be unique)
+      example: 'jarviis101'
+    password:
+      type: string
+      description: Password
+      example: 'example'

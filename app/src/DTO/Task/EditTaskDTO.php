@@ -8,31 +8,25 @@ use App\Entity\User;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class CreateTaskDTO
+final class EditTaskDTO
 {
     /**
      * @JMS\Type("string")
-     * @Assert\NotBlank()
      */
-    public string $title;
+    public ?string $title;
 
     /**
      * @JMS\Type("string")
-     * @Assert\NotBlank()
      */
-    public string $description;
+    public ?string $description;
 
     /**
      * @JMS\Type("int")
      */
-    public Priority $priority;
+    public ?Priority $priority = null;
 
     /**
-     * @JMS\Type("int")
-     * @JMS\SerializedName("parent_id")
+     * @JMS\Type("bool")
      */
-    public ?Task $parentTask = null;
-
-    public User $user;
-
+    public ?bool $status;
 }

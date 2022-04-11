@@ -6,16 +6,17 @@ use App\DTO\Task\CreateTaskDTO;
 use App\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 
-class TaskCreatorService
+class CreatorService
 {
     private EntityManagerInterface $em;
+
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
     public function create(CreateTaskDTO $dto): Task {
-        $task = new Task($dto->user, $dto->title, $dto->description);
+        $task = new Task($dto->user, $dto->priority, $dto->title, $dto->description);
         if ($parentTask = $dto->parentTask) {
             $parentTask->addTask($task);
         }

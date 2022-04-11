@@ -1,0 +1,153 @@
+openapi: 3.0.1
+info:
+  title: Test todo API
+  description: Test todo API
+  version: 1.0.0
+servers:
+  - url: /
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - Authenticate
+      summary: Register user
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: './schemas/auth.yml#RegisterDTO'
+      responses:
+        200:
+          description: User successfully registered
+        409:
+          description: Validation error
+  /api/auth/login:
+    post:
+      tags:
+        - Authenticate
+      summary: Login user
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: './schemas/auth.yml#LoginDTO'
+      responses:
+        200:
+          description: Successfully login
+          content:
+            'application/json':
+              schema:
+                properties:
+                  token:
+                    description: User token for use API
+                    type: string
+                    example: 59f3a58e9c1b50a1
+        401:
+          description: Bad credentials
+          content:
+            'application/json':
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Invalid credentials.
+  /api/task:
+    post:
+      security:
+        - token: []
+      tags:
+        - Task
+      summary: Create task
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: './schemas/task.yml#CreateTaskDTO'
+      responses:
+        200:
+          description: Task successfully created
+          content:
+            'application/json':
+              schema:
+                $ref: './schemas/task.yml#CreateTaskResponseDTO'
+        500:
+          description: This value should not be blank.
+  /api/task/{id}:
+    delete:
+      security:
+        - token: []
+      tags:
+        - Task
+      summary: Delete task
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 10
+      responses:
+        200:
+          description: Task successfully deleted
+        404:
+          description: Task not found.
+        409:
+          description: Invalid status of task.
+    patch:
+      security:
+        - token: [ ]
+      tags:
+        - Task
+      summary: Update task
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 10
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: './schemas/task.yml#EditTaskDTO'
+      responses:
+        200:
+          description: Task successfully updated
+          content:
+            'application/json':
+              schema:
+                $ref: './schemas/task.yml#CreateTaskResponseDTO'
+        409:
+          description: Priority is already same. OR Invalid status of subtask.
+  /api/task/{id}/status:
+    patch:
+      security:
+        - token: []
+      tags:
+        - Task
+      summary: Changed task status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 10
+      responses:
+        200:
+          description: Status succesfully changed
+          content:
+            'application/json':
+              schema:
+                $ref: './schemas/task.yml#CreateTaskResponseDTO'
+        409:
+          description: Invalid status of subtask.
+
+components:
+  securitySchemes:
+    token:
+      type: apiKey
+      description: The token you aquire through login
+      name: X-Auth-Token
+      in: header

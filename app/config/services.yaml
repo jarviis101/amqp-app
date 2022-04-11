@@ -30,3 +30,7 @@ services:
     App\ArgumentValueResolver\Task\CreateTaskResolver:
         tags:
             - { name: controller.argument_value_resolver, priority: 50 }
+
+    App\ArgumentValueResolver\Task\EditTaskResolver:
+        tags:
+            - { name: controller.argument_value_resolver, priority: 50 }

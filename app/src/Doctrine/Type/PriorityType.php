@@ -5,7 +5,6 @@ namespace App\Doctrine\Type;
 use App\Entity\Priority;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\IntegerType;
-use JetBrains\PhpStorm\Pure;
 
 class PriorityType extends IntegerType
 {

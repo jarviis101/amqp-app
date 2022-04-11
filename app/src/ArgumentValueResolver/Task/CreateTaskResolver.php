@@ -17,7 +17,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CreateTaskResolver implements ArgumentValueResolverInterface
 {
-    private SerializerInterface $serializer;
     private TaskRepository $repository;
     private Security $security;
     private ValidatorInterface $validator;

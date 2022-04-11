@@ -18,6 +18,9 @@ class Task
 {
     use ModifyEntityTrait;
 
+    public const TODO = false;
+    public const DONE = true;
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -38,7 +41,7 @@ class Task
     /**
      * @ORM\Column(type="boolean", options={"default": false, "comment":"0 - todo, 1 - done"})
      */
-    private bool $status;
+    private bool $status = self::TODO;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Task")
@@ -61,15 +64,14 @@ class Task
      */
     private Priority $priority;
 
-    public function __construct(User $user, string $title, string $description, bool $status = false)
+    public function __construct(User $user, Priority $priority, string $title, string $description)
     {
         $this->user = $user;
+        $this->priority = $priority;
         $this->title = $title;
         $this->description = $description;
-        $this->status = $status;
         $this->createdAt = new DateTimeImmutable();
         $this->tasks = new ArrayCollection();
-        $this->priority = new Priority();
     }
 
     public function setTitle(string $title): void
@@ -110,7 +112,7 @@ class Task
     public function setPriority(Priority $priority): void
     {
         if ($this->priority->equals($priority)) {
-            throw new PriorityAlreadyExist('Role is already same.');
+            throw new PriorityAlreadyExist('Priority is already same.');
         }
         $this->priority = $priority;
     }
@@ -120,6 +122,28 @@ class Task
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'description' => $this->getDescription(),
+            'status' => $this->isStatus(),
+            'priority' => $this->getPriority()->getLevel(),
         ];
+    }
+
+    public function isStatus(): bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function getPriority(): Priority
+    {
+        return $this->priority;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 }

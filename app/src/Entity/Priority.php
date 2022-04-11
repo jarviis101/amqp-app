@@ -4,7 +4,7 @@ namespace App\Entity;
 
 class Priority
 {
-    public const MIN_VALUE = 0;
+    public const MIN_VALUE = 1;
     public const MAX_VALUE = 5;
 
     private int $level;

@@ -45,6 +45,18 @@ services:
     networks:
       - testapp
 
+  apidoc:
+    image: swaggerapi/swagger-ui
+    container_name: test_app_doc
+    volumes:
+      - ./documentation/:/usr/share/nginx/html/documentation/
+    environment:
+      URLS: "[
+         { url: './documentation/v1.yml', name: 'API-v1' },
+      ]"
+    networks:
+      - testapp
+
 volumes:
   db:
 
