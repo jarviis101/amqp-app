@@ -34,3 +34,10 @@ services:
     App\ArgumentValueResolver\Task\EditTaskResolver:
         tags:
             - { name: controller.argument_value_resolver, priority: 50 }
+
+    App\Service\Task\TaskFinder:
+        calls:
+            - ['addFilter', ['@App\Doctrine\Filter\PriorityFilter', 'priority']]
+            - ['addFilter', ['@App\Doctrine\Filter\StatusFilter', 'status']]
+            - ['addFilter', ['@App\Doctrine\Filter\TitleFilter', 'title']]
+

@@ -4,16 +4,23 @@ namespace App\Controller\Api\Task;
 
 use App\DTO\Task\CreateTaskDTO;
 use App\DTO\Task\EditTaskDTO;
+use App\DTOBuilder\Task\TaskBuilder;
+use App\Entity\Task;
 use App\Exception\InvalidStatusException;
 use App\Exception\TaskNotFoundException;
 use App\Service\Task\CreatorService;
 use App\Service\Task\DeleterService;
+use App\Service\Task\TaskFinder;
 use App\Service\Task\TaskManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/task")
+ */
 class TaskController extends AbstractController
 {
     private TaskManager $taskManager;
@@ -24,7 +31,24 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/task", methods={"POST"}, name="api_create_task")
+     * @Route("", methods={"GET"}, name="api_list_task")
+     */
+    public function index(
+        Request $request,
+        TaskFinder $finder,
+        TaskBuilder $taskBuilder
+    ): Response {
+        return new JsonResponse(
+            $finder->findTasks($request->query->all())
+                ->toArray(function (Task $task) use ($taskBuilder) {
+                    return $taskBuilder->build($task);
+                }),
+            Response::HTTP_OK
+        );
+    }
+
+    /**
+     * @Route("", methods={"POST"}, name="api_create_task")
      */
     public function create(CreateTaskDTO $createTaskDTO, CreatorService $creatorService): Response
     {
@@ -33,7 +57,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/task/{id}", methods={"PATCH"}, name="api_update_task")
+     * @Route("/{id}", methods={"PATCH"}, name="api_update_task")
      */
     public function update(int $id, EditTaskDTO $dto): Response
     {
@@ -42,7 +66,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/task/{id}", methods={"DELETE"}, name="api_delete_task")
+     * @Route("/{id}", methods={"DELETE"}, name="api_delete_task")
      * @throws InvalidStatusException
      * @throws TaskNotFoundException
      */
@@ -53,32 +77,11 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/task/{id}/status", methods={"PATCH"}, name="api_change_status_task")
+     * @Route("/{id}/status", methods={"PATCH"}, name="api_change_status_task")
      */
     public function changeStatus(int $id): Response
     {
         $task = $this->taskManager->changeStatus($id);
         return new JsonResponse($task->toArray(), Response::HTTP_OK);
     }
-
-//    /**
-//     * @Route("/task/{id}", methods={"GET"})
-//     */
-//    public function update(Request $request, int $id)
-//    {
-//        /** @var Task $task */
-//        $task = $this->taskRepository->find($id);
-////        $task->setTitle('lollll');
-////        $this->em->persist($task);
-////        $this->em->flush();
-////        $task = $this->taskRepository->find(1);
-////        dd($task);
-////        dd($task->getTasks()->toArray());
-//        return new JsonResponse([
-//            'id' => $task->getId(),
-//            'title' => $task->getTitle(),
-//            'description' => $task->getDescription(),
-//            'subtasks' => $task->getTasks()->toArray()
-//        ], 200);
-//    }
 }
