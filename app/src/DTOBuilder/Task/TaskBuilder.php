@@ -12,7 +12,7 @@ class TaskBuilder
         $dto = new TaskDTO($task->getId(), $task->getTitle(), $task->getDescription());
         $dto->status = $task->isStatus() ? 'done' : 'todo';
         $dto->priority = $task->getPriority()->getLevel();
-        $dto->createdAt = $task->getCreatedAt();
+        $dto->createdAt = $task->getCreatedAt()->format("D, h:i A");
         $dto->subtasks = $task->getTasks()->map(function (Task $task) {
             return new TaskDTO($task->getId(), $task->getTitle(), $task->getDescription());
         })->toArray();

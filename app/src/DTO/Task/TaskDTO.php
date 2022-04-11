@@ -36,7 +36,7 @@ class TaskDTO
     /**
      * @JMS\Type("string")
      */
-    public DateTimeImmutable $createdAt;
+    public string $createdAt;
 
     /**
      * @var TaskDTO[]

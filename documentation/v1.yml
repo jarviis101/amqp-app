@@ -52,6 +52,50 @@ paths:
                     type: string
                     example: Invalid credentials.
   /api/task:
+    get:
+      security:
+        - token: [ ]
+      tags:
+        - Task
+      summary: Task list
+      parameters:
+        - name: orderBy
+          in: path
+          required: false
+          schema:
+            type: string
+            example: createdAt|updatedAt
+        - name: orderMode
+          in: path
+          required: false
+          schema:
+            type: string
+            example: asc|desc
+        - name: status
+          in: path
+          required: false
+          schema:
+            type: integer
+            example: 0-todo|1-done
+        - name: priority
+          in: path
+          required: false
+          schema:
+            type: string
+            example: 1,2,5
+        - name: title
+          in: path
+          required: false
+          schema:
+            type: string
+            example: Lorem ipsum
+      responses:
+        200:
+          description: List of tasks
+          content:
+            'application/json':
+              schema:
+                $ref: './schemas/task.yml#TaskListResponseDTO'
     post:
       security:
         - token: []
