@@ -12,9 +12,6 @@ WORKDIR /var/www/html
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN curl -sS https://get.symfony.com/cli/installer | bash
-RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
-
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 EXPOSE 9000

@@ -1,0 +1,1004 @@
+{
+	"info": {
+		"_postman_id": "ceabbd53-6827-4f55-a75f-100f8dd95949",
+		"name": "Test collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"example@gmaild.com\",\n    \"username\": \"example\",\n    \"password\": \"example\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:81/api/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"example@gmaild.com\",\n    \"username\": \"example\",\n    \"password\": \"example\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:81/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 15:17:19 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "f92304"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/f92304"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"example\",\n    \"password\": \"example\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:81/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "401",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"exampl\",\n    \"password\": \"example\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:81/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 15:17:41 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "487149"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/487149"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Invalid credentials.\"\n}"
+				},
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"example\",\n    \"password\": \"example\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:81/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, must-revalidate, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 15:17:59 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "394d52"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/394d52"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Expires",
+							"value": "Mon, 11 Apr 2022 15:17:59 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "PHPSESSID=1cd94b19d96ee872bb50abffeb92a30c; path=/; secure; httponly; samesite=lax"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"849ee5b85e3ba417\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Save task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "849ee5b85e3ba417",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Lorem2\",\n    \"description\": \"loreem\",\n    \"priority\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:81/api/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"task"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "849ee5b85e3ba417",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Lorem2\",\n    \"description\": \"loreem\",\n    \"priority\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:81/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, must-revalidate, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 15:19:41 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "6a4897"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/6a4897"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Expires",
+							"value": "Mon, 11 Apr 2022 15:19:41 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "PHPSESSID=ab7f3807a7a90119c07a173c922c30ac; path=/; secure; httponly; samesite=lax"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"title\": \"Lorem2\",\n    \"description\": \"loreem\",\n    \"status\": false,\n    \"priority\": 1\n}"
+				},
+				{
+					"name": "500",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "849ee5b85e3ba417",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Lorem2\",\n    \"description\": \"\",\n    \"priority\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:81/api/task",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, must-revalidate, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 15:19:55 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "9b35ea"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/9b35ea"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Expires",
+							"value": "Mon, 11 Apr 2022 15:19:55 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "PHPSESSID=07c38acabab228718280715d2b830ce0; path=/; secure; httponly; samesite=lax"
+						}
+					],
+					"cookie": [],
+					"body": "\"This value should not be blank.\""
+				}
+			]
+		},
+		{
+			"name": "Delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "849ee5b85e3ba417",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:81/api/task/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"task",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "849ee5b85e3ba417",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:81/api/task/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, must-revalidate, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 15:20:57 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "eb14c3"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/eb14c3"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Expires",
+							"value": "Mon, 11 Apr 2022 15:20:57 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "PHPSESSID=9e65970b084d5c5ff31c29d16829de4b; path=/; secure; httponly; samesite=lax"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "Change status",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "849ee5b85e3ba417",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:81/api/task/2/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"task",
+						"2",
+						"status"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "849ee5b85e3ba417",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:81/api/task/2/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"task",
+								"2",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, must-revalidate, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 15:22:14 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "974c14"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/974c14"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Expires",
+							"value": "Mon, 11 Apr 2022 15:22:14 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "PHPSESSID=c2e5821c78a1da8aa20ecfe6aee85ec4; path=/; secure; httponly; samesite=lax"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"title\": \"Lorem2\",\n    \"description\": \"loreem\",\n    \"status\": true,\n    \"priority\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "Edit task",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "849ee5b85e3ba417",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:81/api/task/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"task",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "849ee5b85e3ba417",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:81/api/task/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"task",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, must-revalidate, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 15:22:42 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "add6d5"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/add6d5"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Expires",
+							"value": "Mon, 11 Apr 2022 15:22:42 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "PHPSESSID=a8b8a695bd982344c7df113ae3b5ed0d; path=/; secure; httponly; samesite=lax"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"title\": \"Lorem2\",\n    \"description\": \"loreem\",\n    \"status\": false,\n    \"priority\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "Task list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "849ee5b85e3ba417",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:81/api/task",
+					"host": [
+						"localhost"
+					],
+					"port": "81",
+					"path": [
+						"api",
+						"task"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Auth-Token",
+								"value": "849ee5b85e3ba417",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:81/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "81",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.20.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.11"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, must-revalidate, private"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Apr 2022 18:45:49 GMT"
+						},
+						{
+							"key": "X-Debug-Token",
+							"value": "1034cf"
+						},
+						{
+							"key": "X-Debug-Token-Link",
+							"value": "https://localhost:81/_profiler/1034cf"
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "noindex"
+						},
+						{
+							"key": "Expires",
+							"value": "Mon, 11 Apr 2022 18:45:49 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "PHPSESSID=18eba3a8b750ed544c3c9a5a73a9e487; path=/; secure; httponly; samesite=lax"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"page\": 1,\n    \"itemsPerPage\": 10,\n    \"pages\": 1,\n    \"count\": 2,\n    \"items\": [\n        {\n            \"id\": 2,\n            \"title\": \"Lorem3\",\n            \"description\": \"loreem\",\n            \"status\": \"todo\",\n            \"priority\": 5,\n            \"createdAt\": \"Mon, 09:44 PM\",\n            \"subtasks\": []\n        },\n        {\n            \"id\": 1,\n            \"title\": \"Lorem3\",\n            \"description\": \"loreem\",\n            \"status\": \"todo\",\n            \"priority\": 5,\n            \"createdAt\": \"Mon, 09:44 PM\",\n            \"subtasks\": []\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
