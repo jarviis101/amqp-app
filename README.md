@@ -10,3 +10,6 @@
 5. `docker-compose exec php_fpm bin/console doctrine:migrations:migrate`
 #### Documentation
 [http://localhost/api/doc/](http://localhost/api/doc/) - API документация
+#### P.S
+1. Codeception поставить не получилось, по этому тестов нет :(
+2. Фикстур так же нет :(
